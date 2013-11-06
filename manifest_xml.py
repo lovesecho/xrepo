@@ -78,9 +78,9 @@ class XmlManifest(object):
     self.manifestFile = os.path.join(self.repodir, MANIFEST_FILE_NAME)
     self.globalConfig = GitConfig.ForUser()
 
-    self.repoProject = MetaProject(self, 'repo',
-      gitdir   = os.path.join(repodir, 'repo/.git'),
-      worktree = os.path.join(repodir, 'repo'))
+    self.repoProject = MetaProject(self, 'xrepo',
+      gitdir   = os.path.join(repodir, 'xrepo/.git'),
+      worktree = os.path.join(repodir, 'xrepo'))
 
     self.manifestProject = MetaProject(self, 'manifests',
       gitdir   = os.path.join(repodir, 'manifests.git'),

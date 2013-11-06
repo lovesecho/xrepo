@@ -34,10 +34,10 @@ class Command(object):
   def OptionParser(self):
     if self._optparse is None:
       try:
-        me = 'repo %s' % self.NAME
+        me = 'xrepo %s' % self.NAME
         usage = self.helpUsage.strip().replace('%prog', me)
       except AttributeError:
-        usage = 'repo %s' % self.NAME
+        usage = 'xrepo %s' % self.NAME
       self._optparse = optparse.OptionParser(usage = usage)
       self._Options(self._optparse)
     return self._optparse

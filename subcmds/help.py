@@ -105,7 +105,7 @@ See 'repo help --all' for a complete list of recognized commands.
         self.heading('%s', ''.ljust(len(heading), '-'))
         self.nl()
 
-        me = 'repo %s' % cmd.NAME
+        me = 'xrepo %s' % cmd.NAME
         body = body.strip()
         body = body.replace('%prog', me)
 
@@ -162,7 +162,7 @@ See 'repo help --all' for a complete list of recognized commands.
       try:
         cmd = self.commands[name]
       except KeyError:
-        print >>sys.stderr, "repo: '%s' is not a repo command." % name
+        print >>sys.stderr, "xrepo: '%s' is not a xrepo command." % name
         sys.exit(1)
 
       cmd.manifest = self.manifest

@@ -378,7 +378,7 @@ _ssh_master = True
 _master_keys_lock = None
 
 def init_ssh():
-  """Should be called once at the start of repo to init ssh master handling.
+  """Should be called once at the start of xrepo to init ssh master handling.
 
   At the moment, all we do is to create our lock.
   """

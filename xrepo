@@ -3,7 +3,7 @@
 ## repo default configuration
 ##
 #REPO_URL='https://code.google.com/p/git-repo/'
-REPO_URL='git://github.com/ossxp-com/repo.git'
+REPO_URL='https://github.com/lovesecho/xrepo.git'
 REPO_REV='master'
 
 # Copyright (C) 2008 Google Inc.
@@ -112,8 +112,8 @@ ogCgkTn+Qxc382IX52MDoRNT+rQWIf8=
 
 GIT = 'git'                     # our git command
 MIN_GIT_VERSION = (1, 5, 4)     # minimum supported git version
-repodir = '.repo'               # name of repo's private directory
-S_repo = 'repo'                 # special repo reposiory
+repodir = '.xrepo'               # name of repo's private directory
+S_repo = 'xrepo'                 # special repo reposiory
 S_manifests = 'manifests'       # special manifest repository
 REPO_MAIN = S_repo + '/main.py' # main script
 
@@ -233,7 +233,7 @@ def _Init(args):
   except CloneFailure:
     if opt.quiet:
       print >>sys.stderr, \
-        'fatal: repo init failed; run without --quiet to see why'
+        'fatal: xrepo init failed; run without --quiet to see why'
     raise
 
 
@@ -312,7 +312,7 @@ def _SetupGnuPG(quiet):
   proc.stdin.close()
 
   if proc.wait() != 0:
-    print >>sys.stderr, 'fatal: registering repo maintainer keys failed'
+    print >>sys.stderr, 'fatal: registering xrepo maintainer keys failed'
     sys.exit(1)
   print
 
@@ -545,7 +545,7 @@ def _Checkout(cwd, branch, rev, quiet):
 
 
 def _FindRepo():
-  """Look for a repo installation, starting at the current directory.
+  """Look for a xrepo installation, starting at the current directory.
   """
   dir = os.getcwd()
   repo = None
@@ -585,16 +585,16 @@ def _ParseArguments(args):
 
 def _Usage():
   print >>sys.stderr,\
-"""usage: repo COMMAND [ARGS]
+"""usage: xrepo COMMAND [ARGS]
 
-repo is not yet installed.  Use "repo init" to install it here.
+xrepo is not yet installed.  Use "xrepo init" to install it here.
 
-The most commonly used repo commands are:
+The most commonly used xrepo commands are:
 
-  init      Install repo in the current working directory
+  init      Install xrepo in the current working directory
   help      Display detailed help on a command
 
-For access to the full online help, install repo ("repo init").
+For access to the full online help, install xrepo ("xrepo init").
 """
   sys.exit(1)
 
@@ -607,7 +607,7 @@ def _Help(args):
     else:
       print >>sys.stderr,\
       "error: '%s' is not a bootstrap command.\n"\
-      '        For access to online help, install repo ("repo init").'\
+      '        For access to online help, install xrepo ("xrepo init").'\
       % args[0]
   else:
     _Usage()
@@ -616,14 +616,14 @@ def _Help(args):
 
 def _NotInstalled():
   print >>sys.stderr,\
-'error: repo is not installed.  Use "repo init" to install it here.'
+'error: xrepo is not installed.  Use "xrepo init" to install it here.'
   sys.exit(1)
 
 
 def _NoCommands(cmd):
   print >>sys.stderr,\
-"""error: command '%s' requires repo to be installed first.
-       Use "repo init" to install it here.""" % cmd
+"""error: command '%s' requires xrepo to be installed first.
+       Use "xrepo init" to install it here.""" % cmd
   sys.exit(1)
 
 

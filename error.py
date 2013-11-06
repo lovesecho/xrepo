@@ -78,15 +78,15 @@ class NoSuchProjectError(Exception):
     return self.name
 
 class RepoChangedException(Exception):
-  """Thrown if 'repo sync' results in repo updating its internal
-     repo or manifest repositories.  In this special case we must
-     use exec to re-execute repo with the new code and manifest.
+  """Thrown if 'xrepo sync' results in xrepo updating its internal
+     xrepo or manifest repositories.  In this special case we must
+     use exec to re-execute xrepo with the new code and manifest.
   """
   def __init__(self, extra_args=[]):
     self.extra_args = extra_args
 
 class HookError(Exception):
-  """Thrown if a 'repo-hook' could not be run.
+  """Thrown if a 'xrepo-hook' could not be run.
 
   The common case is that the file wasn't present when we tried to run it.
   """

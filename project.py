@@ -677,7 +677,7 @@ class Project(object):
         output_redir = sys.stdout
       print >>output_redir, ''
       print >>output_redir, 'project %s/' % self.relpath
-      print >>output_redir, '  missing (run "repo sync")'
+      print >>output_redir, '  missing (run "xrepo sync")'
       return
 
     self.work_git.update_index('-q',
@@ -911,7 +911,7 @@ class Project(object):
       raise GitError('branch %s does not track a remote' % branch.name)
 
     if not opt.ignore_review and branch.remote.review:
-      raise GitError('remote %s has review url, use `repo upload` instead.' % branch.remote.name)
+      raise GitError('remote %s has review url, use `xrepo upload` instead.' % branch.remote.name)
 
     if opt.new_branch:
       dest_branch = branch.name
@@ -919,7 +919,7 @@ class Project(object):
       dest_branch = branch.merge
 
     if dest_branch.startswith(R_TAGS):
-      raise GitError('Can not push to TAGS (%s)! Run repo push with --new flag to create new feature branch.' % dest_branch)
+      raise GitError('Can not push to TAGS (%s)! Run xrepo push with --new flag to create new feature branch.' % dest_branch)
     if not dest_branch.startswith(R_HEADS):
       dest_branch = R_HEADS + dest_branch
 
@@ -1660,7 +1660,7 @@ class Project(object):
 
       if ref_dir:
         mirror_git = os.path.join(ref_dir, self.name + '.git')
-        repo_git = os.path.join(ref_dir, '.repo', 'projects',
+        repo_git = os.path.join(ref_dir, '.xrepo', 'projects',
                                 self.relpath + '.git')
 
         if os.path.exists(mirror_git):
@@ -2106,7 +2106,7 @@ class SyncBuffer(object):
 
 
 class MetaProject(Project):
-  """A special project housed under .repo.
+  """A special project housed under .xrepo.
   """
   def __init__(self, manifest, name, gitdir, worktree):
     repodir = manifest.repodir
@@ -2116,7 +2116,7 @@ class MetaProject(Project):
                      gitdir = gitdir,
                      worktree = worktree,
                      remote = RemoteSpec('origin'),
-                     relpath = '.repo/%s' % name,
+                     relpath = '.xrepo/%s' % name,
                      revisionExpr = 'refs/heads/master',
                      revisionId = None)
 
