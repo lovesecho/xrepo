@@ -469,7 +469,7 @@ def _PostRepoFetch(rp, no_repo_verify=False, verbose=False):
 
 def _VerifyTag(project):
   return True
-  gpg_dir = os.path.expanduser('~/.repoconfig/gnupg')
+  gpg_dir = os.path.expanduser('~/.xrepoconfig/gnupg')
   if not os.path.exists(gpg_dir):
     print >>sys.stderr,\
 """warning: GnuPG was not available during last "repo init"

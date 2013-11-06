@@ -126,7 +126,7 @@ import subprocess
 import sys
 import urllib2
 
-home_dot_repo = os.path.expanduser('~/.repoconfig')
+home_dot_repo = os.path.expanduser('~/.xrepoconfig')
 gpg_dir = os.path.join(home_dot_repo, 'gnupg')
 
 extra_args = []
@@ -257,6 +257,7 @@ def _CheckGitVersion():
 
 
 def _NeedSetupGnuPG():
+  return True
   if not os.path.isdir(home_dot_repo):
     return True
 
@@ -275,6 +276,7 @@ def _NeedSetupGnuPG():
 
 
 def _SetupGnuPG(quiet):
+  return False
   if not os.path.isdir(home_dot_repo):
     try:
       os.mkdir(home_dot_repo)
