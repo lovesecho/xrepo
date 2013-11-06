@@ -47,7 +47,7 @@ from pager import RunPager
 from subcmds import all as all_commands
 
 global_options = optparse.OptionParser(
-                 usage="repo [-p|--paginate|--no-pager] COMMAND [ARGS]"
+                 usage="xrepo [-p|--paginate|--no-pager] COMMAND [ARGS]"
                  )
 global_options.add_option('-p', '--paginate',
                           dest='pager', action='store_true',
@@ -60,10 +60,10 @@ global_options.add_option('--trace',
                           help='trace git command execution')
 global_options.add_option('--time',
                           dest='time', action='store_true',
-                          help='time repo command execution')
+                          help='time xrepo command execution')
 global_options.add_option('--version',
                           dest='show_version', action='store_true',
-                          help='display this version of repo')
+                          help='display this version of xrepo')
 
 class _Repo(object):
   def __init__(self, repodir):
@@ -102,7 +102,7 @@ class _Repo(object):
       cmd = self.commands[name]
     except KeyError:
       print >>sys.stderr,\
-            "repo: '%s' is not a repo command.  See 'repo help'."\
+            "xrepo: '%s' is not a xrepo command.  See 'xrepo help'."\
             % name
       sys.exit(1)
 
@@ -161,7 +161,7 @@ def _MyRepoPath():
   return os.path.dirname(__file__)
 
 def _MyWrapperPath():
-  return os.path.join(os.path.dirname(__file__), 'repo')
+  return os.path.join(os.path.dirname(__file__), 'xrepo')
 
 def _CurrentWrapperVersion():
   VERSION = None
@@ -172,11 +172,11 @@ def _CurrentWrapperVersion():
       fd.close()
       exec line
       return VERSION
-  raise NameError, 'No VERSION in repo script'
+  raise NameError, 'No VERSION in xrepo script'
 
 def _CheckWrapperVersion(ver, repo_path):
   if not repo_path:
-    repo_path = '~/bin/repo'
+    repo_path = '~/bin/xrepo'
 
   if not ver:
      print >>sys.stderr, 'no --wrapper-version argument'
@@ -190,7 +190,7 @@ def _CheckWrapperVersion(ver, repo_path):
   if exp[0] > ver[0] or ver < (0, 4):
     exp_str = '.'.join(map(lambda x: str(x), exp))
     print >>sys.stderr, """
-!!! A new repo command (%5s) is available.    !!!
+!!! A new xrepo command (%5s) is available.    !!!
 !!! You must upgrade before you can continue:   !!!
 
     cp %s %s
@@ -200,7 +200,7 @@ def _CheckWrapperVersion(ver, repo_path):
   if exp > ver:
     exp_str = '.'.join(map(lambda x: str(x), exp))
     print >>sys.stderr, """
-... A new repo command (%5s) is available.
+... A new xrepo command (%5s) is available.
 ... You should upgrade soon:
 
     cp %s %s
@@ -316,9 +316,9 @@ def init_http():
   urllib2.install_opener(urllib2.build_opener(*handlers))
 
 def _Main(argv):
-  opt = optparse.OptionParser(usage="repo wrapperinfo -- ...")
+  opt = optparse.OptionParser(usage="xrepo wrapperinfo -- ...")
   opt.add_option("--repo-dir", dest="repodir",
-                 help="path to .repo/")
+                 help="path to .xrepo/")
   opt.add_option("--wrapper-version", dest="wrapper_version",
                  help="version of the wrapper script")
   opt.add_option("--wrapper-path", dest="wrapper_path",
@@ -347,7 +347,7 @@ def _Main(argv):
     try:
       os.execv(__file__, argv)
     except OSError, e:
-      print >>sys.stderr, 'fatal: cannot restart repo after upgrade'
+      print >>sys.stderr, 'fatal: cannot restart xrepo after upgrade'
       print >>sys.stderr, 'fatal: %s' % e
       sys.exit(128)
 

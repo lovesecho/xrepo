@@ -20,7 +20,7 @@ from project import HEAD
 
 class Version(Command, MirrorSafeCommand):
   common = False
-  helpSummary = "Display the version of repo"
+  helpSummary = "Display the version of xrepo"
   helpUsage = """
 %prog
 """
@@ -29,7 +29,7 @@ class Version(Command, MirrorSafeCommand):
     rp = self.manifest.repoProject
     rem = rp.GetRemote(rp.remote.name)
 
-    print 'repo version %s' % rp.work_git.describe(HEAD)
+    print 'xrepo version %s' % rp.work_git.describe(HEAD)
     print '       (from %s)' % rem.url
     print git.version().strip()
     print 'Python %s' % sys.version
